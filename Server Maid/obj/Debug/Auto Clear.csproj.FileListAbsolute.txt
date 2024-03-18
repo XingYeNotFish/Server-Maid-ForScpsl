@@ -1,0 +1,34 @@
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Auto Clear.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Auto Clear.pdb
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\CommandSystem.Core.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.API.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.CreditTags.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.CustomItems.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.CustomRoles.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Events.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Loader.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Permissions.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Updater.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Mirror.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\NorthwoodLib.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\PluginAPI.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\UnityEngine.CoreModule.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\YamlDotNet.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\UnityEngine.TextRenderingModule.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\UnityEngine.InputLegacyModule.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\UnityEngine.IMGUIModule.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\UnityEngine.SharedInternalsModule.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.API.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.CreditTags.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.CustomItems.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.CustomRoles.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Events.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Loader.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Permissions.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Exiled.Updater.xml
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\obj\Debug\Auto Clear.csproj.AssemblyReference.cache
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\obj\Debug\Auto Clear.csproj.CoreCompileInputs.cache
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\obj\Debug\Auto Clear.csproj.CopyComplete
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\obj\Debug\Auto Clear.dll
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\obj\Debug\Auto Clear.pdb
+C:\Users\TYUJH\Desktop\001\Auto Clear\Auto Clear\bin\Debug\Assembly-CSharp-Publicized.dll

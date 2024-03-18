@@ -1,0 +1,595 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Exiled.Loader</name>
+    </assembly>
+    <members>
+        <member name="T:Exiled.Loader.AutoUpdateFiles">
+            <summary>
+            Automatically updates with Reference used to generate Exiled.
+            </summary>
+        </member>
+        <member name="F:Exiled.Loader.AutoUpdateFiles.RequiredSCPSLVersion">
+            <summary>
+            Gets which SCP: SL version generated Exiled.
+            </summary>
+        </member>
+        <member name="T:Exiled.Loader.Config">
+            <summary>
+            The configs of the loader.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Config.IsEnabled">
+            <inheritdoc />
+        </member>
+        <member name="P:Exiled.Loader.Config.Debug">
+            <inheritdoc />
+        </member>
+        <member name="P:Exiled.Loader.Config.ShouldLoadOutdatedExiled">
+            <summary>
+            Gets or sets a value indicating whether outdated exiled should be loaded or not.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Config.ShouldLoadOutdatedPlugins">
+            <summary>
+            Gets or sets a value indicating whether outdated plugins should be loaded or not.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Config.ExiledDirectoryPath">
+            <summary>
+            Gets or sets the Exiled directory path from which plugins will be loaded.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Config.Environment">
+            <summary>
+            Gets or sets the environment type.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Config.ConfigType">
+            <summary>
+            Gets or sets the config files distribution type.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Config.ScalarStyle">
+            <summary>
+            Gets or sets the quotes wrapper type.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Config.MultiLineScalarStyle">
+            <summary>
+            Gets or sets the quotes wrapper type.
+            </summary>
+        </member>
+        <member name="T:Exiled.Loader.ConfigManager">
+            <summary>
+            Used to handle plugin configs.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.LoadSorted(System.String)">
+            <summary>
+            Loads all plugin configs.
+            </summary>
+            <param name="rawConfigs">The raw configs to be loaded.</param>
+            <returns>Returns a dictionary of loaded configs.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.LoadConfig(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig},System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Loads the config of a plugin using the actual distribution.
+            </summary>
+            <param name="plugin">The plugin which config will be loaded.</param>
+            <param name="rawConfigs">The raw configs to detect if the plugin already has generated configs.</param>
+            <returns>The <see cref="T:Exiled.API.Interfaces.IConfig"/> of the plugin.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.LoadDefaultConfig(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig},System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Loads the config of a plugin using the default distribution.
+            </summary>
+            <param name="plugin">The plugin which config will be loaded.</param>
+            <param name="rawConfigs">The raw configs to detect if the plugin already has generated configs.</param>
+            <returns>The <see cref="T:Exiled.API.Interfaces.IConfig"/> of the plugin.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.LoadSeparatedConfig(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig})">
+            <summary>
+            Loads the config of a plugin using the separated distribution.
+            </summary>
+            <param name="plugin">The plugin which its config will be loaded.</param>
+            <returns>The <see cref="T:Exiled.API.Interfaces.IConfig"/> of the plugin.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.Reload">
+            <summary>
+            Reads, Loads and Saves plugin configs.
+            </summary>
+            <returns>Returns a value indicating if the reloading process has been completed successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.SaveDefaultConfig(System.String)">
+            <summary>
+            Saves default distribution configs.
+            </summary>
+            <param name="configs">The configs to be saved, already serialized in yaml format.</param>
+            <returns>Returns a value indicating whether the configs have been saved successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.SaveSeparatedConfig(System.String,System.String)">
+            <summary>
+            Saves separated distribution plugin configs.
+            </summary>
+            <param name="pluginPrefix">The prefix of the plugin which its config is going to be saved.</param>
+            <param name="configs">The configs to be saved, already serialized in yaml format.</param>
+            <returns>Returns a value indicating whether the configs have been saved successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.Save(System.Collections.Generic.SortedDictionary{System.String,Exiled.API.Interfaces.IConfig})">
+            <summary>
+            Saves plugin configs.
+            </summary>
+            <param name="configs">The configs to be saved.</param>
+            <returns>Returns a value indicating whether the configs have been saved successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.Read">
+            <summary>
+            Read all plugin configs.
+            </summary>
+            <returns>Returns the read configs.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.Clear">
+            <summary>
+            Clears the configs.
+            </summary>
+            <returns>Returns a value indicating whether configs have been cleared successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.ConfigManager.ReloadRemoteAdmin">
+            <summary>
+            Reloads RemoteAdmin configs.
+            </summary>
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.CommentGatheringTypeInspector">
+            <summary>
+            Spurce: https://dotnetfiddle.net/8M6iIE.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentGatheringTypeInspector.#ctor(YamlDotNet.Serialization.ITypeInspector)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.Loader.Features.Configs.CommentGatheringTypeInspector"/> class.
+            </summary>
+            <param name="innerTypeDescriptor">The inner type description instance.</param>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentGatheringTypeInspector.GetProperties(System.Type,System.Object)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.CommentsObjectDescriptor">
+            <summary>
+            Source: https://dotnetfiddle.net/8M6iIE.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentsObjectDescriptor.#ctor(YamlDotNet.Serialization.IObjectDescriptor,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.Loader.Features.Configs.CommentsObjectDescriptor"/> class.
+            </summary>
+            <param name="innerDescriptor">The inner descriptor instance.</param>
+            <param name="comment">The comment to be written.</param>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsObjectDescriptor.Comment">
+            <summary>
+            Gets the comment to be written.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsObjectDescriptor.Value">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IObjectDescriptor" />
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsObjectDescriptor.Type">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IObjectDescriptor" />
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsObjectDescriptor.StaticType">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IObjectDescriptor" />
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsObjectDescriptor.ScalarStyle">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IObjectDescriptor" />
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.CommentsObjectGraphVisitor">
+            <summary>
+            Source: https://dotnetfiddle.net/8M6iIE.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentsObjectGraphVisitor.#ctor(YamlDotNet.Serialization.IObjectGraphVisitor{YamlDotNet.Core.IEmitter})">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.Loader.Features.Configs.CommentsObjectGraphVisitor"/> class.
+            </summary>
+            <param name="nextVisitor">The next visitor instance.</param>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentsObjectGraphVisitor.EnterMapping(YamlDotNet.Serialization.IPropertyDescriptor,YamlDotNet.Serialization.IObjectDescriptor,YamlDotNet.Core.IEmitter)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor">
+            <summary>
+            Source: https://dotnetfiddle.net/8M6iIE.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.#ctor(YamlDotNet.Serialization.IPropertyDescriptor)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor"/> class.
+            </summary>
+            <param name="baseDescriptor">The base descriptor instance.</param>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.Name">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.Type">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.TypeOverride">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.Order">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.ScalarStyle">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.CanWrite">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.Write(System.Object,System.Object)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.GetCustomAttribute``1">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CommentsPropertyDescriptor.Read(System.Object)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IPropertyDescriptor"/>
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.CustomConverters.AttachmentIdentifiersConverter">
+            <summary>
+            Converts a <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:InventorySystem.Items.Firearms.Attachments.AttachmentName"/> to Yaml configs and vice versa.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.AttachmentIdentifiersConverter.Accepts(System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.AttachmentIdentifiersConverter.ReadYaml(YamlDotNet.Core.IParser,System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.AttachmentIdentifiersConverter.WriteYaml(YamlDotNet.Core.IEmitter,System.Object,System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.CustomConverters.ColorConverter">
+            <summary>
+            Converts <see cref="T:UnityEngine.Color"/> to Yaml configs and vice versa.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.ColorConverter.Accepts(System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.ColorConverter.ReadYaml(YamlDotNet.Core.IParser,System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.ColorConverter.WriteYaml(YamlDotNet.Core.IEmitter,System.Object,System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.CustomConverters.VectorsConverter">
+            <summary>
+            Converts a Vector2, Vector3 or Vector4 to Yaml configs and vice versa.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.VectorsConverter.Accepts(System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.VectorsConverter.ReadYaml(YamlDotNet.Core.IParser,System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.CustomConverters.VectorsConverter.WriteYaml(YamlDotNet.Core.IEmitter,System.Object,System.Type)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.IYamlTypeConverter" />
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.TypeAssigningEventEmitter">
+            <summary>
+            Event emitter which wraps all strings in double quotes.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.TypeAssigningEventEmitter.#ctor(YamlDotNet.Serialization.IEventEmitter)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.EventEmitters.ChainedEventEmitter"/>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.TypeAssigningEventEmitter.Emit(YamlDotNet.Serialization.ScalarEventInfo,YamlDotNet.Core.IEmitter)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.UnderscoredNamingConvention">
+            <inheritdoc cref="T:YamlDotNet.Serialization.NamingConventions.UnderscoredNamingConvention"/>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.UnderscoredNamingConvention.Instance">
+            <inheritdoc cref="F:YamlDotNet.Serialization.NamingConventions.UnderscoredNamingConvention.Instance"/>
+        </member>
+        <member name="P:Exiled.Loader.Features.Configs.UnderscoredNamingConvention.Properties">
+            <summary>
+            Gets the list.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.UnderscoredNamingConvention.Apply(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Exiled.Loader.Features.Configs.ValidatingNodeDeserializer">
+            <summary>
+            Basic configs validation.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.ValidatingNodeDeserializer.#ctor(YamlDotNet.Serialization.INodeDeserializer)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.Loader.Features.Configs.ValidatingNodeDeserializer"/> class.
+            </summary>
+            <param name="nodeDeserializer">The node deserializer instance.</param>
+        </member>
+        <member name="M:Exiled.Loader.Features.Configs.ValidatingNodeDeserializer.Deserialize(YamlDotNet.Core.IParser,System.Type,System.Func{YamlDotNet.Core.IParser,System.Type,System.Object},System.Object@)">
+            <inheritdoc cref="T:YamlDotNet.Serialization.INodeDeserializer"/>
+        </member>
+        <member name="T:Exiled.Loader.Features.LoaderMessages">
+            <summary>
+            A class that contains the different EXILED loader messages.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Features.LoaderMessages.Default">
+            <summary>
+            Gets the default loader message.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Features.LoaderMessages.EasterEgg">
+            <summary>
+            Gets the easter egg loader message.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Features.LoaderMessages.Christmas">
+            <summary>
+            Gets the christmas loader message.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Features.LoaderMessages.Halloween">
+            <summary>
+            Gets the halloween loader message.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.LoaderMessages.GetMessage">
+            <summary>
+            Gets the loader message according to the actual month.
+            </summary>
+            <returns>The correspondent loader message.</returns>
+        </member>
+        <member name="T:Exiled.Loader.Features.MultiAdminFeatures">
+            <summary>
+            This class implements all possible MultiAdmin features.
+            </summary>
+        </member>
+        <member name="T:Exiled.Loader.Features.PluginPriorityComparer">
+            <summary>
+            Comparator implementation according to plugin priorities.
+            </summary>
+        </member>
+        <member name="F:Exiled.Loader.Features.PluginPriorityComparer.Instance">
+            <summary>
+            Public instance.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Features.PluginPriorityComparer.Compare(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig},Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig})">
+            <inheritdoc/>
+        </member>
+        <member name="T:Exiled.Loader.Loader">
+            <summary>
+            Used to handle plugins.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Loader.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Exiled.Loader.Loader"/> class.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Loader.Plugins">
+            <summary>
+            Gets the plugins list.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Loader.Locations">
+            <summary>
+            Gets a dictionary containing the file paths of assemblies.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Loader.Random">
+            <summary>
+            Gets the initialized global random class.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Loader.Version">
+            <summary>
+            Gets the version of the assembly.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Loader.Dependencies">
+            <summary>
+            Gets plugin dependencies.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Loader.Serializer">
+            <summary>
+            Gets or sets the serializer for configs and translations.
+            </summary>
+        </member>
+        <member name="P:Exiled.Loader.Loader.Deserializer">
+            <summary>
+            Gets or sets the deserializer for configs and translations.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Loader.LoadPlugins">
+            <summary>
+            Loads all plugins.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Loader.LoadAssembly(System.String)">
+            <summary>
+            Loads an assembly.
+            </summary>
+            <param name="path">The path to load the assembly from.</param>
+            <returns>Returns the loaded assembly or <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Exiled.Loader.Loader.CreatePlugin(System.Reflection.Assembly)">
+            <summary>
+            Create a plugin instance.
+            </summary>
+            <param name="assembly">The plugin assembly.</param>
+            <returns>Returns the created plugin instance or <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Exiled.Loader.Loader.EnablePlugins">
+            <summary>
+            Enables all plugins.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Loader.ReloadPlugins">
+            <summary>
+            Reloads all plugins.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Loader.DisablePlugins">
+            <summary>
+            Disables all plugins.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Loader.GetPlugin(System.String)">
+            <summary>
+            Gets a plugin with its prefix or name.
+            </summary>
+            <param name="args">The name or prefix of the plugin (Using the prefix is recommended).</param>
+            <returns>The desired plugin, null if not found.</returns>
+        </member>
+        <member name="M:Exiled.Loader.Loader.Run(System.Reflection.Assembly[])">
+            <summary>
+            Runs the plugin manager, by loading all dependencies, plugins, configs and then enables all plugins.
+            </summary>
+            <param name="dependencies">The dependencies that could have been loaded by Exiled.Bootstrap.</param>
+        </member>
+        <member name="M:Exiled.Loader.Loader.IsDerivedFromPlugin(System.Type)">
+            <summary>
+            Indicates that the passed type is derived from the plugin type.
+            </summary>
+            <param name="type">Type.</param>
+            <returns><see langword="true"/> if passed type is derived from <see cref="T:Exiled.API.Features.Plugin`1"/> or <see cref="T:Exiled.API.Features.Plugin`2"/>, otherwise <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Exiled.Loader.Loader.ResolveAssemblyEmbeddedResources(System.Reflection.Assembly)">
+            <summary>
+            Attempts to load Embedded (compressed) assemblies from specified Assembly.
+            </summary>
+            <param name="target">Assembly to check for embedded assemblies.</param>
+        </member>
+        <member name="M:Exiled.Loader.Loader.CheckUAC">
+            <summary>
+            Check UAC elevated (for Windows).
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.Loader.LoadDependencies">
+            <summary>
+            Loads all dependencies.
+            </summary>
+        </member>
+        <member name="T:Exiled.Loader.LoaderPlugin">
+            <summary>
+            The PluginAPI Plugin class for the EXILED Loader.
+            </summary>
+        </member>
+        <member name="F:Exiled.Loader.LoaderPlugin.Config">
+            <summary>
+            The config for the EXILED Loader.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.LoaderPlugin.Enable">
+            <summary>
+            Called by PluginAPI when the plugin is enabled.
+            </summary>
+        </member>
+        <member name="T:Exiled.Loader.PathExtensions">
+            <summary>
+            Contains the extensions to get a path.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.PathExtensions.GetPath(System.Reflection.Assembly)">
+            <summary>
+            Gets a path of an assembly.
+            </summary>
+            <param name="assembly">The <see cref="T:System.Reflection.Assembly"/>.</param>
+            <exception cref="T:System.ArgumentNullException">The provided assembly is <see langword="null"/>.</exception>
+            <returns>The path of the assembly or <see langword="null"/>.</returns>
+        </member>
+        <member name="M:Exiled.Loader.PathExtensions.GetPath(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig})">
+            <summary>
+            Gets a path of a plugin.
+            </summary>
+            <param name="plugin">The <see cref="T:Exiled.API.Interfaces.IPlugin`1"/>.</param>
+            <exception cref="T:System.ArgumentNullException">The provided plugin is <see langword="null"/>.</exception>
+            <returns>The path of the plugin or <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Exiled.Loader.TranslationManager">
+            <summary>
+            Used to handle plugin translations.
+            </summary>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.Load(System.String)">
+            <summary>
+            Loads all plugin translations.
+            </summary>
+            <param name="rawTranslations">The raw translations to be loaded.</param>
+            <returns>Returns a dictionary of loaded translations.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.LoadTranslation(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig},System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Loads the translations of a plugin based on the actual distribution.
+            </summary>
+            <param name="plugin">The plugin which its translation has to be loaded.</param>
+            <param name="rawTranslations">The raw translations to check whether or not the plugin already has a translation config.</param>
+            <returns>The <see cref="T:Exiled.API.Interfaces.ITranslation"/> of the desired plugin.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.Reload">
+            <summary>
+            Reads, Loads and Saves plugin translations.
+            </summary>
+            <returns>Returns a value indicating if the reloading process has been completed successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.SaveDefaultTranslation(System.String)">
+            <summary>
+            Saves default distribution translations.
+            </summary>
+            <param name="translations">The translations to be saved, already serialized in yaml format.</param>
+            <returns>Returns a value indicating whether the translations have been saved successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.SaveSeparatedTranslation(System.String,System.String)">
+            <summary>
+            Saves plugin translations based on the separated distribution.
+            </summary>
+            <param name="pluginPrefix">The prefix of the plugin which its translation is going to be saved.</param>
+            <param name="translations">The translations to be saved, already serialized in yaml format.</param>
+            <returns>Returns a value indicating whether the translations have been saved successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.Save(System.Collections.Generic.SortedDictionary{System.String,Exiled.API.Interfaces.ITranslation})">
+            <summary>
+            Saves plugin translations.
+            </summary>
+            <param name="translations">The translations to be saved.</param>
+            <returns>Returns a value indicating whether the translations have been saved successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.Read">
+            <summary>
+            Read all plugin translations.
+            </summary>
+            <returns>Returns the read translations.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.Clear">
+            <summary>
+            Clears the translations.
+            </summary>
+            <returns>Returns a value indicating whether translations have been cleared successfully or not.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.LoadDefaultTranslation(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig},System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Loads the translations of a plugin based on the default distribution.
+            </summary>
+            <param name="plugin">The plugin which its translation has to be loaded.</param>
+            <param name="rawTranslations">The raw translations to check whether or not the plugin already has a translation config.</param>
+            <returns>The <see cref="T:Exiled.API.Interfaces.ITranslation"/> of the desired plugin.</returns>
+        </member>
+        <member name="M:Exiled.Loader.TranslationManager.LoadSeparatedTranslation(Exiled.API.Interfaces.IPlugin{Exiled.API.Interfaces.IConfig})">
+            <summary>
+            Loads the translations of a plugin based in the separated distribution.
+            </summary>
+            <param name="plugin">The plugin which its translations will be loaded.</param>
+            <returns>The translation of the desired plugin.</returns>
+        </member>
+    </members>
+</doc>

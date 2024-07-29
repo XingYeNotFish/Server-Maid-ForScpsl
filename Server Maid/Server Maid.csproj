@@ -7,8 +7,8 @@
     <ProjectGuid>{6B577E13-73E2-45FB-BAD8-19E93F31F5B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Auto_Clear</RootNamespace>
-    <AssemblyName>Auto Clear</AssemblyName>
+    <RootNamespace>Server_Maid</RootNamespace>
+    <AssemblyName>Server Maid</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -105,6 +105,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command.cs" />
+    <Compile Include="CommandTranslations.cs" />
     <Compile Include="Maid.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

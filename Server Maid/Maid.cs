@@ -5,25 +5,26 @@ using Exiled.Events.EventArgs.Server;
 using MEC;
 using System.Collections.Generic;
 using System.Linq;
+using PlayerRoles;
 
 namespace Server_Maid
 {
     public class Maid
     {
         public static CoroutineHandle MaidSystem_Coroutine;
-        private static XYlikeconfig config => Plugin.Instance.Config;
+        private static XYlikeconfig Config => Plugin.Instance.Config;
         public static void Start()
         {
-            if (config.Is_cleaning_module_enabled)
+            if (Config.IsCleaningModuleEnabled)
             {
                 MaidSystem_Coroutine = Timing.RunCoroutine(MaidSystem());
-                Log.Warn(config.Cleaning_module_enabled_server_console_messages);
+                Log.Warn(Config.CleaningModuleEnabledServerConsoleMessages);
             }
         }
 
         public static void End(RoundEndedEventArgs e)
         {
-            if (config.Is_cleaning_module_enabled)
+            if (Config.IsCleaningModuleEnabled)
             {
                 Timing.KillCoroutines(MaidSystem_Coroutine);
             }
@@ -32,7 +33,7 @@ namespace Server_Maid
         public static IEnumerator<float> MaidSystem()
         {
 
-            yield return Timing.WaitForSeconds(config.Cleaning_interval);
+            yield return Timing.WaitForSeconds(Config.CleaningInterval);
             for (; ; )
             {
                 int ragdollnum = 0;
@@ -40,6 +41,13 @@ namespace Server_Maid
 
                 foreach (Ragdoll ragdoll in Ragdoll.List.ToHashSet())
                 {
+                    if (!Config.IsCleaning0492Ragdolls)
+                    {
+                        if (ragdoll.Role == RoleTypeId.Scp0492)
+                        {
+                            continue;
+                        }
+                    }
                     ragdoll.Destroy();
                     int num = ragdollnum;
                     ragdollnum = num + 1;
@@ -56,14 +64,14 @@ namespace Server_Maid
                     }
                 }
 
-                Log.Warn(string.Format(config.Server_console_messages, itemnum, ragdollnum));
+                Log.Warn(string.Format(Config.ServerConsoleMessages, itemnum, ragdollnum));
 
-                Timing.CallDelayed(5f, delegate ()
+                Timing.CallDelayed(3f, delegate ()
                 {
-                    Map.Broadcast(10, string.Format(config.Broadcast_messages, itemnum, ragdollnum), 0, true);
+                    Map.Broadcast(10, string.Format(Config.BroadcastMessages, itemnum, ragdollnum), 0, true);
                 });
 
-                yield return Timing.WaitForSeconds(config.Cleaning_interval);
+                yield return Timing.WaitForSeconds(Config.CleaningInterval);
             }
         }
     }

@@ -25,7 +25,7 @@ namespace Server_Maid
             Instance = null;
             base.OnDisabled();
             Exiled.Events.Handlers.Server.RoundStarted -= Maid.Start;
-            Exiled.Events.Handlers.Server.RoundEnded += Maid.End;
+            Exiled.Events.Handlers.Server.RoundEnded -= Maid.End;
             Log.Info("Plugin has been disabled! / 插件已关闭!");
         }
     }

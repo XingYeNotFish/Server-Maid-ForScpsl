@@ -6,6 +6,8 @@ using MEC;
 using System.Collections.Generic;
 using System.Linq;
 using PlayerRoles;
+using PlayerRoles.PlayableScps.Scp3114;
+using Map = Exiled.API.Features.Map;
 
 namespace Server_Maid
 {
@@ -19,6 +21,7 @@ namespace Server_Maid
             {
                 MaidSystem_Coroutine = Timing.RunCoroutine(MaidSystem());
                 Log.Warn(Config.CleaningModuleEnabledServerConsoleMessages);
+                Plugin.DisguisedRagdolls.Clear();
             }
         }
 
@@ -27,6 +30,7 @@ namespace Server_Maid
             if (Config.IsCleaningModuleEnabled)
             {
                 Timing.KillCoroutines(MaidSystem_Coroutine);
+                Plugin.DisguisedRagdolls.Clear();
             }
         }
 
@@ -48,6 +52,17 @@ namespace Server_Maid
                             continue;
                         }
                     }
+
+                    if (Plugin.DisguisedRagdolls.Contains(ragdoll))
+                    {
+                        continue;
+                    }
+
+                    if (!ragdoll.IsExpired)
+                    {
+                        continue;
+                    }
+                    
                     ragdoll.Destroy();
                     int num = ragdollnum;
                     ragdollnum = num + 1;

@@ -13,6 +13,7 @@ namespace Server_Maid
 
         public static Plugin Instance;
         public static List<Ragdoll> DisguisedRagdolls = new List<Ragdoll>();
+
         public override void OnEnabled()
         {
             Instance = this;
@@ -42,11 +43,12 @@ namespace Server_Maid
                 DisguisedRagdolls.Add(e.Ragdoll);
             }
         }
+
         private void Revealing(RevealingEventArgs e)
         {
             if (e.Player != null)
             {
-                DisguisedRagdolls.Remove(e.Scp3114.Ragdoll);
+                DisguisedRagdolls.Remove(Ragdoll.Get(e.Scp3114.Ragdoll));
             }
         }
     }

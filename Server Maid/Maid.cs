@@ -4,10 +4,9 @@ using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Server;
 using MEC;
 using System.Collections.Generic;
-using System.Linq;
 using PlayerRoles;
-using PlayerRoles.PlayableScps.Scp3114;
 using Map = Exiled.API.Features.Map;
+using System.Linq;
 
 namespace Server_Maid
 {
@@ -15,6 +14,7 @@ namespace Server_Maid
     {
         public static CoroutineHandle MaidSystem_Coroutine;
         private static XYlikeconfig Config => Plugin.Instance.Config;
+
         public static void Start()
         {
             if (Config.IsCleaningModuleEnabled)
@@ -36,23 +36,14 @@ namespace Server_Maid
 
         public static IEnumerator<float> MaidSystem()
         {
-
             yield return Timing.WaitForSeconds(Config.CleaningInterval);
             for (; ; )
             {
                 int ragdollnum = 0;
                 int itemnum = 0;
 
-                foreach (Ragdoll ragdoll in Ragdoll.List.ToHashSet())
+                foreach (Ragdoll ragdoll in Ragdoll.List)
                 {
-                    if (!Config.IsCleaning0492Ragdolls)
-                    {
-                        if (ragdoll.Role == RoleTypeId.Scp0492)
-                        {
-                            continue;
-                        }
-                    }
-
                     if (Plugin.DisguisedRagdolls.Contains(ragdoll))
                     {
                         continue;
@@ -62,26 +53,34 @@ namespace Server_Maid
                     {
                         continue;
                     }
-                    
+
                     ragdoll.Destroy();
-                    int num = ragdollnum;
-                    ragdollnum = num + 1;
+                    ragdollnum++;
                 }
 
-                foreach (Pickup item in Pickup.List.ToHashSet())
+                foreach (Pickup item in Pickup.List)
                 {
-                    bool flag = !item.Type.IsScp() && !item.Type.IsKeycard() && !item.Type.IsMedical() && !item.Type.IsThrowable() && item.Type != ItemType.MicroHID && !item.Type.IsWeapon(true);
-                    if (flag)
+                    if (Config.ItemWhiteLists.Any())
                     {
-                        item.Destroy();
-                        int num = itemnum;
-                        itemnum = num + 1;
+                        if (!Config.ItemWhiteLists.Contains(item.Type))
+                        {
+                            item.Destroy();
+                            itemnum++;
+                        }
+                    }
+                    else
+                    {
+                        if (!item.Type.IsScp() && !item.Type.IsKeycard() && !item.Type.IsMedical() && !item.Type.IsThrowable() && item.Type != ItemType.MicroHID && !item.Type.IsWeapon(true))
+                        {
+                            item.Destroy();
+                            itemnum++;
+                        }
                     }
                 }
 
                 Log.Warn(string.Format(Config.ServerConsoleMessages, itemnum, ragdollnum));
 
-                Timing.CallDelayed(3f, delegate ()
+                Timing.CallDelayed(3f, () =>
                 {
                     Map.Broadcast(10, string.Format(Config.BroadcastMessages, itemnum, ragdollnum), 0, true);
                 });

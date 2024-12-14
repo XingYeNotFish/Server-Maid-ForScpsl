@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Interfaces;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Server_Maid
@@ -13,7 +14,7 @@ namespace Server_Maid
         [Description("Cleaning module settings / 清理模块设置")]
         public bool IsCleaningModuleEnabled { get; set; } = true;
 
-        public bool IsCleaning0492Ragdolls { get; set; } = false;
+        public List<ItemType> ItemWhiteLists { get; set; } = [];
 
         public string CleaningModuleEnabledServerConsoleMessages { get; set; } = "Cleaning module has been enable in this round!";
 

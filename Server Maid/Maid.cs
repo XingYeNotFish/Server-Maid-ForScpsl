@@ -4,7 +4,6 @@ using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Server;
 using MEC;
 using System.Collections.Generic;
-using PlayerRoles;
 using Map = Exiled.API.Features.Map;
 using System.Linq;
 
@@ -21,7 +20,6 @@ namespace Server_Maid
             {
                 MaidSystem_Coroutine = Timing.RunCoroutine(MaidSystem());
                 Log.Warn(Config.CleaningModuleEnabledServerConsoleMessages);
-                Plugin.DisguisedRagdolls.Clear();
             }
         }
 
@@ -30,7 +28,6 @@ namespace Server_Maid
             if (Config.IsCleaningModuleEnabled)
             {
                 Timing.KillCoroutines(MaidSystem_Coroutine);
-                Plugin.DisguisedRagdolls.Clear();
             }
         }
 
@@ -44,11 +41,6 @@ namespace Server_Maid
 
                 foreach (Ragdoll ragdoll in Ragdoll.List)
                 {
-                    if (Plugin.DisguisedRagdolls.Contains(ragdoll))
-                    {
-                        continue;
-                    }
-
                     if (!ragdoll.IsExpired)
                     {
                         continue;

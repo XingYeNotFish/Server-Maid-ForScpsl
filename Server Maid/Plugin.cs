@@ -7,7 +7,7 @@ namespace Server_Maid
     {
         public override string Name { get; } = "Server Maid / 服务器女仆";
         public override string Author { get; } = "XingYeNotFish";
-        public override Version Version { get; } = new Version(1, 0, 2);
+        public override Version Version { get; } = new Version(1, 0, 3);
 
         public static Plugin Instance;
 

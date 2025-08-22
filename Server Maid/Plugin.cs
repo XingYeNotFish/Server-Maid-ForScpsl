@@ -1,4 +1,5 @@
 ﻿using Exiled.API.Features;
+using Exiled.Events.EventArgs.Player;
 using Exiled.Events.EventArgs.Scp3114;
 using PlayerRoles.Ragdolls;
 using System;
@@ -10,7 +11,7 @@ namespace Server_Maid
     {
         public override string Name { get; } = "Server Maid / 服务器女仆";
         public override string Author { get; } = "XingYeNotFish";
-        public override Version Version { get; } = new Version(1, 0, 4);
+        public override Version Version { get; } = new Version(1, 0, 5);
 
         public static Plugin Instance;
         public static List<BasicRagdoll> DisguisedRagdolls = [];
@@ -39,14 +40,15 @@ namespace Server_Maid
 
         private void Disguised(DisguisedEventArgs e)
         {
-            if (e.Player != null)
+            if (e.Player != null && e.Ragdoll != null)
             {
                 DisguisedRagdolls.Add(e.Ragdoll.Base);
             }
         }
+
         private void Revealing(RevealingEventArgs e)
         {
-            if (e.Player != null)
+            if (e.Player != null && e.Scp3114 != null)
             {
                 DisguisedRagdolls.Remove(e.Scp3114.Ragdoll);
             }

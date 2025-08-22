@@ -1,22 +1,37 @@
-﻿using Exiled.API.Extensions;
-using Exiled.API.Features;
+﻿using Exiled.API.Features;
 using Exiled.API.Features.Pickups;
 using Exiled.Events.EventArgs.Server;
 using MEC;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Server_Maid
 {
     public class Maid
     {
+        public enum CleaningType
+        {
+            Category,
+            WhiteList,
+            BlackList
+        }
+
         public static CoroutineHandle MaidSystem_Coroutine;
         private static XYlikeconfig Config => Plugin.Instance.Config;
+        private static Func<Pickup, bool> ShouldDestroyItem;
 
         public static void Start()
         {
             if (Config.IsCleaningModuleEnabled)
             {
+                ShouldDestroyItem = Config.CleaningType switch
+                {
+                    CleaningType.Category => p => Config.Categories.Contains(p.Category),
+                    CleaningType.WhiteList => p => !Config.WhiteList.Contains(p.Type),
+                    CleaningType.BlackList => p => Config.BlackList.Contains(p.Type),
+                    _ => _ => false
+                };
+
                 MaidSystem_Coroutine = Timing.RunCoroutine(MaidSystem());
                 Log.Warn(Config.CleaningModuleEnabledServerConsoleMessages);
                 Plugin.DisguisedRagdolls.Clear();
@@ -54,31 +69,22 @@ namespace Server_Maid
 
                 foreach (Pickup item in Pickup.List)
                 {
-                    if (Config.ItemWhiteLists.Any())
+                    if (ShouldDestroyItem(item))
                     {
-                        if (!Config.ItemWhiteLists.Contains(item.Type))
-                        {
-                            item.Destroy();
-                            itemnum++;
-                        }
-                    }
-                    else
-                    {
-                        if (!item.Type.IsScp() && !item.Type.IsKeycard() && !item.Type.IsMedical() && !item.Type.IsThrowable() && item.Type != ItemType.MicroHID && !item.Type.IsWeapon(true))
-                        {
-                            item.Destroy();
-                            itemnum++;
-                        }
+                        item.Destroy();
+                        itemnum++;
                     }
                 }
 
-                Log.Warn(string.Format(Config.ServerConsoleMessages, itemnum, ragdollnum));
-
-                Timing.CallDelayed(3f, () =>
+                try
                 {
+                    Log.Warn(string.Format(Config.ServerConsoleMessages, itemnum, ragdollnum));
                     Map.Broadcast(10, string.Format(Config.BroadcastMessages, itemnum, ragdollnum), 0, true);
-                });
-
+                }
+                catch (Exception e)
+                {
+                    Log.Error("Error in MaidSystem: " + e.Message);
+                }
                 yield return Timing.WaitForSeconds(Config.CleaningInterval);
             }
         }

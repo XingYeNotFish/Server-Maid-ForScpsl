@@ -70,10 +70,10 @@ black_list: []
 cleaning_interval: 180
 
 # 清理结束后在服务器控制台的提示
-server_console_messages: '🧽 Server Maid 已清理 {0} 件垃圾和 {1} 具尸体。'
+server_console_messages: '🧽 Server Maid 已清理 {0} 件垃圾并送 {1} 位伤员去医院!'
 
 # 清理结束后在游戏内的广播
-broadcast_messages: '<b><size=25>[<color=#EEEE00>服务器女仆</color>] 已打扫 {0} 件垃圾，并送 {1} 位伤员去医院！</size></b>'
+broadcast_messages: '<b><size=25>[<color=#EEEE00>服务器女仆</color>] 已打扫 {0} 件垃圾，并送 {1} 位伤员去医院!</size></b>'
 ```
 
 ---

@@ -46,34 +46,27 @@
 
 ## 📖 示例配置（中文）
 ```yml
-# 是否开启此插件?
+# Do you want to enable the plugin? / 是否开启此插件?
 is_enabled: true
 debug: false
-
-# 清理模块设置
+# Cleaning module settings / 清理模块设置
 is_cleaning_module_enabled: true
-
-# 掉落物清理类型: Category/Whitelist/Blacklist
+# Pickups Cleaning type: Category/Whitelist/Blacklist / 掉落物清理类型: 物品种类/白名单/黑名单
 cleaning_type: Category
-
 categories:
-- Ammo        # 弹药
-- Armor       # 护甲
-- Keycard     # 钥匙卡
-- None        # 无分类物品
-- Radio       # 对讲机
-
+- Ammo    #弹药
+- Armor   #护甲
+- Keycard #钥匙卡
+- None    #未定义物品
+- Radio   #对讲机
 white_list: []
 black_list: []
-
-# 清理间隔时间（秒）
+cleaning_module_enabled_server_console_messages: '清理模块已在本回合启动!'
+# Cleaning interval time Unit: seconds/ 清理间隔时间 单位: 秒
 cleaning_interval: 180
-
-# 清理结束后在服务器控制台的提示
-server_console_messages: '🧽 Server Maid 已清理 {0} 件垃圾并送 {1} 位伤员去医院!'
-
-# 清理结束后在游戏内的广播
-broadcast_messages: '<b><size=25>[<color=#EEEE00>服务器女仆</color>] 已打扫 {0} 件垃圾，并送 {1} 位伤员去医院!</size></b>'
+# Cleanup ended displaying content {0} represents the number of items cleared {1} is the player's ragdolls/ 清理结束显示内容 {0} 代表清理的物品数量 {1}为玩家尸体
+server_console_messages: '[服务器女仆] 已清理 {0} 个掉落物并送 {1} 位伤员去医务室!'
+broadcast_messages: '<b><size=25>[<color=#EEEE00>服务器女仆</color>]清理完毕! 已清理 {0} 个掉落物并送 {1} 位伤员去医务室!</size></b>'
 ```
 
 ---

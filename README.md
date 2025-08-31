@@ -22,7 +22,7 @@ Exiled plugin that keeps your server tidy – automatically removes expired ragd
 ---
 
 ## 🚀 Installation
-1. Download the latest release from the [Releases]((https://github.com/XingYeNotFish/Server-Maid-ForScpsl/)releases) page.  
+1. Download the latest release from the [Releases](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases) page.  
 2. Drop `Server-Maid.dll` into your `EXILED/Plugins` folder.  
 3. Restart or reload your server.  
 4. (Optional) edit the auto-generated config file at  

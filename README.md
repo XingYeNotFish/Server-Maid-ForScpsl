@@ -10,6 +10,42 @@ Supports both **EXILED** and **LabAPI** frameworks.
 
 ---
 
+## 🛠️ For Developers
+
+### Project Structure
+This project uses conditional compilation to support both **EXILED** and **LabAPI** frameworks, generating corresponding DLL files through different build configurations.
+
+### Building Different Versions
+
+#### Visual Studio GUI
+1. Open **Build** → **Configuration Manager**
+2. Select from the **Active solution configuration** dropdown:
+   - `Debug-LabApi` / `Release-LabApi` → Build LabAPI version
+   - `Debug-Exiled` / `Release-Exiled` → Build EXILED version
+3. Click **Build** → **Build Solution**
+
+#### Command Line
+```batch
+# LabAPI version
+msbuild Server_Maid.csproj /p:Configuration=Release-LabApi
+
+# EXILED version  
+msbuild Server_Maid.csproj /p:Configuration=Release-Exiled
+```
+
+### Output Files
+| Configuration | Output Path | Filename |
+|-------------|-------------|----------|
+| Release-LabApi | `bin\Release-LabApi\` | `Server Maid.LabApi.dll` |
+| Release-Exiled | `bin\Release-Exiled\` | `Server Maid.Exiled.dll` |
+
+### Notes
+- Do not reference both frameworks' APIs simultaneously; use `#if EXILED` / `#else` to differentiate in code
+- After cleaning the solution, ensure `bin/` and `obj/` folders are deleted before switching configurations
+- LabAPI and EXILED use different `Assembly-CSharp` references (original vs Publicized), handled automatically in the project file
+
+---
+
 ## ✨ Features
 * **Dual framework support** – works with both **EXILED** and **LabAPI**.
 * **Automatic cleanup** – runs on a configurable timer.

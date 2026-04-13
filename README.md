@@ -3,30 +3,43 @@
 
 **SCP: Secret Laboratory** 
 
-Exiled plugin that keeps your server tidy – automatically removes expired ragdolls and unwanted item pickups every round.
+Plugin that keeps your server tidy – automatically removes expired ragdolls and unwanted item pickups every round.  
+Supports both **EXILED** and **LabAPI** frameworks.
 
-[![Downloads](https://img.shields.io/github/downloads/XingYeNotFish/Server-Maid-ForScpsl/total?color=brown&label=Downloads&style=for-the-badge    )](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases    )
+[![Downloads](https://img.shields.io/github/downloads/XingYeNotFish/Server-Maid-ForScpsl/total?color=brown&label=Downloads&style=for-the-badge)](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases)
 
 ---
 
 ## ✨ Features
-* **Automatic cleanup** – runs on a configurable timer.  
-* **SCP-3114 friendly** – ragdolls used by SCP-3114 for disguise are **never** deleted.  
+* **Dual framework support** – works with both **EXILED** and **LabAPI**.
+* **Automatic cleanup** – runs on a configurable timer.
+* **SCP-3114 friendly** – ragdolls used by SCP-3114 for disguise are **never** deleted.
 * **Flexible filtering** – decide what gets removed by:
-  * Item **category** (ammo, armor, key-cards …)  
-  * **Whitelist** (keep only listed items)  
-  * **Blacklist** (remove only listed items)  
-* **Multi-language messages** – English & Chinese built-in, fully customizable.  
+  * Item **category** (ammo, armor, key-cards …)
+  * **Whitelist** (keep only listed items)
+  * **Blacklist** (remove only listed items)
+* **Multi-language messages** – English & Chinese built-in, fully customizable.
 * **Zero performance worries** – executed in a single lightweight coroutine.
 
 ---
 
 ## 🚀 Installation
-1. Download the latest release from the [Releases](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases) page.  
-2. Drop `Server-Maid.dll` into your `EXILED/Plugins` folder.  
-3. Restart or reload your server.  
+
+### EXILED Version
+1. Download `Server Maid.Exiled.dll` from the [Releases](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases) page.
+2. Drop it into your `EXILED/Plugins` folder.
+3. Restart or reload your server.
 4. (Optional) edit the auto-generated config file at  
-   `EXILED\Configs\Plugins\server_maid\{Your_Port}.yml`.
+   `EXILED/Configs/Plugins/server_maid/{Your_Port}.yml`.
+
+### LabAPI Version
+1. Download `Server Maid.LabApi.dll` from the [Releases](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases) page.
+2. Drop it into your `LabAPI/plugins/{Your_Port}|global` folder (create if not exists).
+3. Restart your server.
+4. (Optional) edit the auto-generated config file at  
+   `SCP Secret Laboratory/LabAPI/configs/{Your_Port}/Server Maid/服务器女仆/config.yml`.
+
+> ⚠️ **Note:** Do not use both versions simultaneously – choose the one matching your server framework.
 
 ---
 

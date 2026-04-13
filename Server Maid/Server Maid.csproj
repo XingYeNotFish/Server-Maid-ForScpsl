@@ -3,84 +3,82 @@
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <LangVersion>12.0</LangVersion>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug-LabApi</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{6B577E13-73E2-45FB-BAD8-19E93F31F5B6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Server_Maid</RootNamespace>
-    <AssemblyName>Server Maid</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+
+  <!-- ========== Debug-LabApi ========== -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-LabApi|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>bin\Debug-LabApi\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;LABAPI</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>Server Maid.LabApi</AssemblyName>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+
+  <!-- ========== Release-LabApi ========== -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-LabApi|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <OutputPath>bin\Release-LabApi\</OutputPath>
+    <DefineConstants>TRACE;LABAPI</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AssemblyName>Server Maid.LabApi</AssemblyName>
   </PropertyGroup>
+
+  <!-- ========== Debug-Exiled ========== -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug-Exiled|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Debug-Exiled\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;EXILED</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>Server Maid.Exiled</AssemblyName>
+  </PropertyGroup>
+
+  <!-- ========== Release-Exiled ========== -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release-Exiled|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release-Exiled\</OutputPath>
+    <DefineConstants>TRACE;EXILED</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>Server Maid.Exiled</AssemblyName>
+  </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Assembly-CSharp-firstpass">
       <HintPath>..\lib\net48\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-Publicized, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Assembly-CSharp_publicized, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\lib\net48\Assembly-CSharp_publicized.dll</HintPath>
-    </Reference>
-    <Reference Include="CommandSystem.Core, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\CommandSystem.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.API, Version=9.8.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Exiled.API.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.CreditTags, Version=9.8.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Exiled.CreditTags.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.CustomItems, Version=9.8.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Exiled.CustomItems.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.CustomRoles, Version=9.8.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Exiled.CustomRoles.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.Events, Version=9.8.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Exiled.Events.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.Loader, Version=9.8.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Exiled.Loader.dll</HintPath>
-    </Reference>
-    <Reference Include="Exiled.Permissions, Version=9.8.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\Exiled.Permissions.dll</HintPath>
-    </Reference>
-    <Reference Include="LabApi, Version=1.1.1.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\LabApi.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Mirror">
       <HintPath>..\lib\net48\Mirror.dll</HintPath>
+      <Private>False</Private>
     </Reference>
-    <Reference Include="NorthwoodLib, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\NorthwoodLib.dll</HintPath>
+    <Reference Include="NorthwoodLib">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\NorthwoodLib.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Pooling">
+      <HintPath>..\lib\net48\Pooling.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -92,34 +90,103 @@
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
       <HintPath>..\lib\net48\UnityEngine.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>..\lib\net48\UnityEngine.CoreModule.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.PhysicsModule">
       <HintPath>..\lib\net48\UnityEngine.PhysicsModule.dll</HintPath>
-    </Reference>
-    <Reference Include="YamlDotNet, Version=11.0.0.0, Culture=neutral, PublicKeyToken=ec19458f3c15af5e, processorArchitecture=MSIL">
-      <HintPath>..\packages\ExMod.Exiled.9.8.1\lib\net48\YamlDotNet.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug-LabApi' Or '$(Configuration)' == 'Release-LabApi'">
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\lib\net48\Assembly-CSharp.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="LabApi">
+      <HintPath>..\packages\Northwood.LabAPI.1.1.6.1\lib\net48\LabApi.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\YamlDotNet.11.0.1\lib\net45\YamlDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug-Exiled' Or '$(Configuration)' == 'Release-Exiled'">
+    <Reference Include="Assembly-CSharp-Publicized">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Assembly-CSharp-Publicized.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CommandSystem.Core">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\CommandSystem.Core.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Exiled.API">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Exiled.API.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Exiled.CreditTags">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Exiled.CreditTags.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Exiled.CustomItems">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Exiled.CustomItems.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Exiled.CustomRoles">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Exiled.CustomRoles.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Exiled.Events">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Exiled.Events.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Exiled.Loader">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Exiled.Loader.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Exiled.Permissions">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\Exiled.Permissions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="YamlDotNet">
+      <HintPath>..\packages\ExMod.Exiled.9.13.3\lib\net48\YamlDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+
   <ItemGroup>
     <Compile Include="Maid.cs" />
     <Compile Include="Plugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XYlikeconfig.cs" />
   </ItemGroup>
+
   <ItemGroup>
     <Analyzer Include="..\lib\net48\Assembly-CSharp-firstpass.dll" />
-    <Analyzer Include="..\lib\net48\Assembly-CSharp.dll" />
     <Analyzer Include="..\lib\net48\Mirror.dll" />
     <Analyzer Include="..\lib\net48\NorthwoodLib.dll" />
     <Analyzer Include="..\lib\net48\UnityEngine.CoreModule.dll" />
     <Analyzer Include="..\lib\net48\UnityEngine.dll" />
     <Analyzer Include="..\lib\net48\UnityEngine.PhysicsModule.dll" />
   </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug-LabApi' Or '$(Configuration)' == 'Release-LabApi'">
+    <Analyzer Include="..\lib\net48\Assembly-CSharp.dll" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(Configuration)' == 'Debug-Exiled' Or '$(Configuration)' == 'Release-Exiled'">
+    <Analyzer Include="..\packages\ExMod.Exiled.9.13.3\lib\net48\Assembly-CSharp-Publicized.dll" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

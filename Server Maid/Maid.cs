@@ -1,12 +1,18 @@
-﻿using Exiled.API.Features;
-using Exiled.API.Features.Pickups;
-using Exiled.Events.EventArgs.Server;
-using MEC;
-using System;
-using System.Collections.Generic;
-
-namespace Server_Maid
+﻿namespace Server_Maid
 {
+    using MEC;
+    using System;
+    using System.Collections.Generic;
+
+#if EXILED
+    using Exiled.API.Features;
+    using Exiled.API.Features.Pickups;
+    using Exiled.Events.EventArgs.Server;
+#else
+    using LabApi.Features.Wrappers;
+    using LabApi.Features.Console;
+    using LabApi.Events.Arguments.ServerEvents;
+#endif
     public class Maid
     {
         public enum CleaningType
@@ -18,8 +24,11 @@ namespace Server_Maid
 
         public static CoroutineHandle MaidSystem_Coroutine;
         private static XYlikeconfig Config => Plugin.Instance.Config;
+#if EXILED
         private static Func<Pickup, bool> ShouldDestroyItem;
-
+#else
+        private static Func<Pickup, bool> ShouldDestroyItem;
+#endif
         public static void Start()
         {
             if (Config.IsCleaningModuleEnabled)
@@ -33,12 +42,20 @@ namespace Server_Maid
                 };
 
                 MaidSystem_Coroutine = Timing.RunCoroutine(MaidSystem());
+#if EXILED
                 Log.Warn(Config.CleaningModuleEnabledServerConsoleMessages);
+#else
+                Logger.Warn(Config.CleaningModuleEnabledServerConsoleMessages);
+#endif
                 Plugin.DisguisedRagdolls.Clear();
             }
         }
 
+#if EXILED
         public static void End(RoundEndedEventArgs e)
+#else
+        public static void End(RoundEndedEventArgs e)
+#endif
         {
             if (Config.IsCleaningModuleEnabled)
             {
@@ -60,7 +77,11 @@ namespace Server_Maid
                     if (Plugin.DisguisedRagdolls.Contains(ragdoll.Base))
                         continue;
 
+#if EXILED
                     if (!ragdoll.IsExpired)
+#else
+                    if (!(ragdoll.Base.NetworkInfo.ExistenceTime > 12f))
+#endif
                         continue;
 
                     ragdoll.Destroy();
@@ -78,12 +99,22 @@ namespace Server_Maid
 
                 try
                 {
+#if EXILED
                     Log.Warn(string.Format(Config.ServerConsoleMessages, itemnum, ragdollnum));
                     Map.Broadcast(10, string.Format(Config.BroadcastMessages, itemnum, ragdollnum), 0, true);
+#else
+                    Logger.Warn(string.Format(Config.ServerConsoleMessages, itemnum, ragdollnum));
+                    Server.SendBroadcast(string.Format(Config.BroadcastMessages, itemnum, ragdollnum), 10, 0, true);
+#endif
+                    
                 }
                 catch (Exception e)
                 {
+#if EXILED
                     Log.Error("Error in MaidSystem: " + e.Message);
+#else
+                    Logger.Error("Error in MaidSystem: " + e.Message);
+#endif
                 }
                 yield return Timing.WaitForSeconds(Config.CleaningInterval);
             }

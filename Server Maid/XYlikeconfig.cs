@@ -1,11 +1,15 @@
-﻿using Exiled.API.Interfaces;
-using System.Collections.Generic;
-using System.ComponentModel;
-using static Server_Maid.Maid;
-
-namespace Server_Maid
+﻿namespace Server_Maid
 {
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using static Server_Maid.Maid;
+
+#if EXILED
+    using Exiled.API.Interfaces;
     public class XYlikeconfig : IConfig
+#else
+    public class XYlikeconfig
+#endif
     {
         [Description("Do you want to enable the plugin? / 是否开启此插件?")]
         public bool IsEnabled { get; set; } = true;

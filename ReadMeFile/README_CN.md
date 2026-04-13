@@ -7,6 +7,42 @@
 
 ---
 
+## 🛠️ 开发者说明
+
+### 项目结构
+本项目使用条件编译同时支持 **EXILED** 和 **LabAPI** 两个框架，通过不同的编译配置生成对应的 DLL 文件。
+
+### 生成不同版本
+
+#### Visual Studio 图形界面
+1. 打开 **生成** → **配置管理器**
+2. 在 **活动解决方案配置** 下拉框中选择：
+   - `Debug-LabApi` / `Release-LabApi` → 生成 LabAPI 版本
+   - `Debug-Exiled` / `Release-Exiled` → 生成 EXILED 版本
+3. 点击 **生成** → **生成解决方案**
+
+#### 命令行编译
+```batch
+# LabAPI 版本
+msbuild Server_Maid.csproj /p:Configuration=Release-LabApi
+
+# EXILED 版本  
+msbuild Server_Maid.csproj /p:Configuration=Release-Exiled
+```
+
+### 输出文件
+| 配置 | 输出路径 | 文件名 |
+|------|---------|--------|
+| Release-LabApi | `bin\Release-LabApi\` | `Server Maid.LabApi.dll` |
+| Release-Exiled | `bin\Release-Exiled\` | `Server Maid.Exiled.dll` |
+
+### 注意事项
+- 请勿同时引用两个框架的 API，代码中请使用 `#if EXILED` / `#else` 进行区分
+- 清理解决方案后请确保删除 `bin/` 和 `obj/` 文件夹再切换配置编译
+- LabAPI 和 EXILED 使用的 `Assembly-CSharp` 不同（原版 vs Publicized），已在项目文件中自动处理
+
+---
+
 ## ✨ 主要功能
 - **双框架支持**：同时兼容 **EXILED** 和 **LabAPI** 两种插件框架。
 - **全自动清理**：每回合按可配置的时间间隔自动运行。

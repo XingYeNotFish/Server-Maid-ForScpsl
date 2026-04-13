@@ -1,44 +1,55 @@
 # Server Maid 🧹  
 **SCP: Secret Laboratory 服务器清洁插件**
 
-一个基于 EXILED 的轻量级插件，帮你自动清理玩家尸体和无用掉落物,让服务器时刻保持整洁.
+一个支持 **EXILED** 和 **LabAPI** 双框架的轻量级插件，帮你自动清理玩家尸体和无用掉落物，让服务器时刻保持整洁。
 
-[![Downloads](https://img.shields.io/github/downloads/XingYeNotFish/Server-Maid-ForScpsl/total?color=brown&label=Downloads&style=for-the-badge) ](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases)
+[![Downloads](https://img.shields.io/github/downloads/XingYeNotFish/Server-Maid-ForScpsl/total?color=brown&label=Downloads&style=for-the-badge)](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases)
 
 ---
 
 ## ✨ 主要功能
-- **全自动清理**: 每回合按可配置的时间间隔自动运行.
-- **SCP-3114 友好**: 3114正在伪装的玩家尸体**永远不会**被误删导致提前暴露.
-- **多种过滤方式**:
-  - 按**物品类别** (弹药、护甲、钥匙卡…)
-  - **白名单** (仅保留指定物品)
-  - **黑名单** (仅删除指定物品)
-- **双语提示**：内置中文 & 英,支持完全自定义.
-- **零性能负担**：单协程执行,极轻量.
+- **双框架支持**：同时兼容 **EXILED** 和 **LabAPI** 两种插件框架。
+- **全自动清理**：每回合按可配置的时间间隔自动运行。
+- **SCP-3114 友好**：3114 正在伪装的玩家尸体**永远不会**被误删导致提前暴露。
+- **多种过滤方式**：
+  - 按**物品类别**（弹药、护甲、钥匙卡…）
+  - **白名单**（仅保留指定物品）
+  - **黑名单**（仅删除指定物品）
+- **双语提示**：内置中文 & 英文，支持完全自定义。
+- **零性能负担**：单协程执行，极轻量。
 
 ---
 
 ## 🚀 安装步骤
-1. 前往 [Releases](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases) 页面下载最新版.
-2. 将 `Server-Maid.dll` 放入服务器的 `EXILED/Plugins` 文件夹.
-3. 重启或重载服务器.
-4. （可选）在 `EXILED\Configs\Plugins\server_maid\{端口号}.yml` 中修改生成的配置文件.
+
+### EXILED 版本
+1. 前往 [Releases](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases) 页面下载 `Server Maid.Exiled.dll`。
+2. 将文件放入服务器的 `EXILED/Plugins` 文件夹。
+3. 重启或重载服务器。
+4. （可选）在 `EXILED/Configs/Plugins/server_maid/{端口号}.yml` 中修改生成的配置文件。
+
+### LabAPI 版本
+1. 前往 [Releases](https://github.com/XingYeNotFish/Server-Maid-ForScpsl/releases) 页面下载 `Server Maid.LabApi.dll`。
+2. 将文件放入服务器的 `LabAPI/plugins/{端口号}|global` 文件夹（若无此目录请手动创建）。
+3. 重启服务器。
+4. （可选）在 `SCP Secret Laboratory/LabAPI/configs/{端口号}/Server Maid/服务器女仆/config.yml`. 中修改生成的配置文件。
+
+> ⚠️ **注意**：请勿同时使用两个版本，请根据您的服务器框架选择其一。
 
 ---
 
 ## ⚙️ 配置说明
-所有值都可直接编辑 YAML 文件.
+所有值都可直接编辑 YAML 文件。
 
 | 键名 | 类型 | 默认值 | 说明 |
 |------|------|--------|------|
 | `IsEnabled` | bool | `true` | 插件总开关 |
 | `IsCleaningModuleEnabled` | bool | `true` | 清理模块独立开关 |
-| `CleaningType` | enum | `Category` | 清理模式: `Category` (按类别)、`WhiteList` (白名单)、`BlackList` (黑名单) |
-| `Categories` | list | `[Ammo, Armor, Keycard, None, Radio]` | 仅当 `CleaningType = Category` 时生效. 列表内的物品类别会被清理 |
-| `WhiteList` | list | `[]` | 仅当 `CleaningType = WhiteList` 时生效. 列表以外的物品才会被清理 |
-| `BlackList` | list | `[]` | 仅当 `CleaningType = BlackList` 时生效. 列表内的物品会被清理 |
-| `CleaningInterval` | float | `300` | 每次清理的间隔时间(秒) |
+| `CleaningType` | enum | `Category` | 清理模式：`Category`（按类别）、`WhiteList`（白名单）、`BlackList`（黑名单） |
+| `Categories` | list | `[Ammo, Armor, Keycard, None, Radio]` | 仅当 `CleaningType = Category` 时生效。列表内的物品类别会被清理 |
+| `WhiteList` | list | `[]` | 仅当 `CleaningType = WhiteList` 时生效。列表以外的物品才会被清理 |
+| `BlackList` | list | `[]` | 仅当 `CleaningType = BlackList` 时生效。列表内的物品会被清理 |
+| `CleaningInterval` | float | `300` | 每次清理的间隔时间（秒） |
 | `ServerConsoleMessages` | string | `"Cleanup successful! Cleaning {0} items and {1} ragdolls this time!"` | 清理成功后服务器控制台提示 |
 | `BroadcastMessages` | string | `"<b><size=25>[<color=#EEEE00>Server Maid</color>] ... </size></b>"` | 清理成功后游戏内广播内容 |
 
@@ -54,17 +65,17 @@ is_cleaning_module_enabled: true
 # Pickups Cleaning type: Category/Whitelist/Blacklist / 掉落物清理类型: 物品种类/白名单/黑名单
 cleaning_type: Category
 categories:
-- Ammo    #弹药
-- Armor   #护甲
-- Keycard #钥匙卡
-- None    #未定义物品
-- Radio   #对讲机
+- Ammo    # 弹药
+- Armor   # 护甲
+- Keycard # 钥匙卡
+- None    # 未定义物品
+- Radio   # 对讲机
 white_list: []
 black_list: []
 cleaning_module_enabled_server_console_messages: '清理模块已在本回合启动!'
-# Cleaning interval time Unit: seconds/ 清理间隔时间 单位: 秒
+# Cleaning interval time Unit: seconds / 清理间隔时间 单位：秒
 cleaning_interval: 180
-# Cleanup ended displaying content {0} represents the number of items cleared {1} is the player's ragdolls/ 清理结束显示内容 {0} 代表清理的物品数量 {1}为玩家尸体
+# Cleanup ended displaying content {0} represents the number of items cleared {1} is the player's ragdolls / 清理结束显示内容 {0} 代表清理的物品数量 {1} 为玩家尸体
 server_console_messages: '[服务器女仆] 已清理 {0} 个掉落物并送 {1} 位伤员去医务室!'
 broadcast_messages: '<b><size=25>[<color=#EEEE00>服务器女仆</color>]清理完毕! 已清理 {0} 个掉落物并送 {1} 位伤员去医务室!</size></b>'
 ```

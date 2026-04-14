@@ -9,8 +9,6 @@ namespace Server_Maid
     using Exiled.API.Features;
     using Exiled.Events.EventArgs.Player;
     using Exiled.Events.EventArgs.Scp3114;
-
-    public class Plugin : Plugin<XYlikeconfig>
 #else
     using LabApi.Features;
     using LabApi.Features.Console;
@@ -18,9 +16,9 @@ namespace Server_Maid
     using LabApi.Events.Arguments.Scp3114Events;
     using LabApi.Events.Handlers;
     using PlayerRoles.PlayableScps.Scp3114;
+#endif
 
     public class Plugin : Plugin<XYlikeconfig>
-#endif
     {
         public override string Name { get; } = "Server Maid / 服务器女仆";
         public override string Author { get; } = "XingYeNotFish";

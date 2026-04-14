@@ -24,11 +24,8 @@
 
         public static CoroutineHandle MaidSystem_Coroutine;
         private static XYlikeconfig Config => Plugin.Instance.Config;
-#if EXILED
         private static Func<Pickup, bool> ShouldDestroyItem;
-#else
-        private static Func<Pickup, bool> ShouldDestroyItem;
-#endif
+
         public static void Start()
         {
             if (Config.IsCleaningModuleEnabled)
@@ -51,11 +48,7 @@
             }
         }
 
-#if EXILED
         public static void End(RoundEndedEventArgs e)
-#else
-        public static void End(RoundEndedEventArgs e)
-#endif
         {
             if (Config.IsCleaningModuleEnabled)
             {

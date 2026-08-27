@@ -1,5 +1,6 @@
 ﻿namespace Server_Maid
 {
+    using System;
     using System.Collections.Generic;
     using System.ComponentModel;
     using static Server_Maid.Maid;
@@ -17,6 +18,11 @@
 
         [Description("Cleaning module settings / 清理模块设置")]
         public bool IsCleaningModuleEnabled { get; set; } = true;
+
+#if LABAPI
+        [Obsolete("This option is not available in LabApi.")]
+#endif
+        public bool ShouldDestroyCustomItems { get; set; } = true;
 
         [Description("Pickups Cleaning type: Category/Whitelist/Blacklist / 掉落物清理类型: 物品种类/白名单/黑名单")]
         public CleaningType CleaningType { get; set; } = CleaningType.Category;

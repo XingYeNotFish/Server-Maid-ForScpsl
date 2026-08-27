@@ -8,6 +8,8 @@
     using Exiled.API.Features;
     using Exiled.API.Features.Pickups;
     using Exiled.Events.EventArgs.Server;
+    using Exiled.CustomItems.API.Features;
+    using System.Linq;
 #else
     using LabApi.Features.Wrappers;
     using LabApi.Features.Console;
@@ -37,6 +39,9 @@
                     CleaningType.BlackList => p => Config.BlackList.Contains(p.Type),
                     _ => _ => false
                 };
+
+                if (Timing.IsRunning(MaidSystem_Coroutine))
+                    Timing.KillCoroutines(MaidSystem_Coroutine);
 
                 MaidSystem_Coroutine = Timing.RunCoroutine(MaidSystem());
 #if EXILED
@@ -85,6 +90,15 @@
                 {
                     if (ShouldDestroyItem(item))
                     {
+#if EXILED
+                        if (!Config.ShouldDestroyCustomItems)
+                        {
+                            CustomItem custom = CustomItem.Registered.FirstOrDefault(x => x.Check(item));
+                            if (custom != null)
+                                continue;
+                        }
+#endif
+
                         item.Destroy();
                         itemnum++;
                     }
